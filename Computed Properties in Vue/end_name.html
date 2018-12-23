@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vue.js directives</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+  <body>
+    <div id="app" class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>Hello {{fullName}}</h1>
+          <ul class="text-left">
+            <li>First Name: {{first}}</li>
+            <li>Last Name: {{last}}</li>
+          </ul>
+            <hr />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+            <label>Full Name:</label>
+            <input type="text" class="form-control" v-model="fullName"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>First Name:</label>
+            <input type="text" class="form-control" v-model="first"/>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Last Name:</label>
+            <input type="text" class="form-control" v-model="last"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="https://unpkg.com/vue@2.5.21/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        first: '',
+        last: '',
+      },
+      methods: {
+        
+      },
+      computed: {
+        fullName: {
+          // Getter function
+          get: function() {
+            return this.first + ' ' + this.last
+          },
+          // Setter function
+          set: function(value) {
+            var name = value.split(' ')
+            this.first = name[0]
+            this.last = name[name.length - 1]
+          }
+        }
+      }
+    })
+  </script>
+</html>

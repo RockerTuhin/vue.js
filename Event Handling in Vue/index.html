@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vue.js directives</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+<body>
+    <div id="app">
+      <h1>{{message}}</h1>
+      <h1>Count: {{count}}</h1>
+      <input type="text" v-model="message">
+      <button v-on:click="countUp" class="btn btn-primary">Count Up!</button>
+      <button @click="countDown" class="btn btn-primary">Count Down!</button>
+      <p>
+        Visit: <a v-bind:href="url">{{cleanUrl}}</a>
+      </p>
+      <input type="text" v-model="url" class="form-control"><br>
+      <button @click="humanizeUrl" class="btn btn-primary">Humanize Me!</button>
+    </div>
+</body>
+
+  <script src="https://unpkg.com/vue@2.5.21/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello Vue World!',
+        count: 0,
+        url: "",
+        cleanUrl: "",
+      },
+      methods: {
+        countUp: function() {
+          this.count += 1;
+        },
+        countDown: function() {
+          this.count -= 1;
+        },
+        humanizeUrl: function() {
+          this.cleanUrl = this.url.replace(/https?:\/\//, '').replace(/\//, '')
+        },
+      }
+    })
+  </script>
+</html>
